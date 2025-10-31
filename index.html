@@ -5,100 +5,429 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Repositório de Links Pessoal</title>
 <style>
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    background: #e3f2fd;
+  * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
   }
-  header {
-    background: #1976d2;
-    color: white;
-    text-align: center;
-    padding: 1rem;
-    font-size: 1.5rem;
-    letter-spacing: 1px;
-  }
-  main {
-    max-width: 800px;
-    margin: 20px auto;
-    background: white;
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
     padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
   }
-  form {
-    display: grid;
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  header h1 {
+    color: #667eea;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  header p {
+    color: #666;
+    font-size: 0.95rem;
+  }
+
+  .stats {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 15px;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  main {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  }
+
+  .form-section {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    border: 2px dashed #667eea;
+  }
+
+  .form-header {
+    display: flex;
+    align-items: center;
     gap: 10px;
+    margin-bottom: 20px;
   }
-  input, textarea, button {
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
+
+  .form-header h2 {
+    color: #667eea;
+    font-size: 1.3rem;
   }
-  button {
-    background: #1976d2;
+
+  .cancel-btn {
+    display: none;
+    background: #dc3545;
     color: white;
     border: none;
+    padding: 6px 15px;
+    border-radius: 8px;
     cursor: pointer;
+    font-size: 0.85rem;
+    margin-left: auto;
   }
-  button:hover {
-    background: #1565c0;
+
+  .cancel-btn:hover {
+    background: #c82333;
   }
-  #listaLinks {
-    margin-top: 20px;
+
+  form {
+    display: grid;
+    gap: 15px;
   }
-  .linkCard {
-    background: #f5f5f5;
-    padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 10px;
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
   }
-  .linkCard h3 {
-    margin: 0;
-    color: #1565c0;
-  }
-  .linkCard p {
-    margin: 4px 0;
+
+  label {
     color: #555;
+    font-weight: 600;
+    font-size: 0.9rem;
   }
-  .acoes {
-    margin-top: 10px;
+
+  input, textarea {
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+    font-size: 1rem;
+    transition: all 0.3s;
+    font-family: inherit;
   }
-  .acoes button {
-    margin-right: 5px;
-    border-radius: 8px;
-    padding: 6px 10px;
+
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
   }
-  .abrir { background: #4caf50; }
-  .abrir:hover { background: #43a047; }
-  .editar { background: #ffa000; }
-  .editar:hover { background: #fb8c00; }
-  .excluir { background: #e53935; }
-  .excluir:hover { background: #d32f2f; }
+
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .btn-group {
+    display: flex;
+    gap: 10px;
+  }
+
+  button[type="submit"] {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s;
+    flex: 1;
+  }
+
+  button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+  }
+
+  .search-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+  }
+
   #busca {
-    width: 100%;
-    margin-top: 10px;
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .filter-btn {
+    background: white;
+    border: 2px solid #667eea;
+    color: #667eea;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    background: #667eea;
+    color: white;
+  }
+
+  #listaLinks {
+    display: grid;
+    gap: 15px;
+  }
+
+  .linkCard {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    border-left: 4px solid #667eea;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    transition: all 0.3s;
+    animation: slideIn 0.3s ease;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .linkCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+
+  .linkCard h3 {
+    color: #333;
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+  }
+
+  .linkCard .url {
+    color: #667eea;
+    font-size: 0.85rem;
+    word-break: break-all;
+    margin-bottom: 8px;
+  }
+
+  .linkCard p {
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .linkCard .meta {
+    display: flex;
+    gap: 15px;
+    font-size: 0.8rem;
+    color: #999;
+    margin-bottom: 12px;
+  }
+
+  .acoes {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .acoes button {
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+
+  .abrir {
+    background: #10b981;
+    color: white;
+  }
+
+  .abrir:hover {
+    background: #059669;
+    transform: scale(1.05);
+  }
+
+  .copiar {
+    background: #3b82f6;
+    color: white;
+  }
+
+  .copiar:hover {
+    background: #2563eb;
+    transform: scale(1.05);
+  }
+
+  .editar {
+    background: #f59e0b;
+    color: white;
+  }
+
+  .editar:hover {
+    background: #d97706;
+    transform: scale(1.05);
+  }
+
+  .excluir {
+    background: #ef4444;
+    color: white;
+  }
+
+  .excluir:hover {
+    background: #dc2626;
+    transform: scale(1.05);
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+  }
+
+  .empty-state svg {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+    opacity: 0.3;
+  }
+
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    display: none;
+    align-items: center;
+    gap: 10px;
+    z-index: 1000;
+    animation: slideUp 0.3s ease;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .toast.success {
+    border-left: 4px solid #10b981;
+  }
+
+  .toast.error {
+    border-left: 4px solid #ef4444;
+  }
+
+  @media (max-width: 600px) {
+    body {
+      padding: 10px;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .acoes {
+      flex-direction: column;
+    }
+
+    .acoes button {
+      width: 100%;
+    }
   }
 </style>
 </head>
 <body>
 
-<header>📚 Repositório de Links Pessoal</header>
-<main>
-  <form id="formLinks">
-    <input type="hidden" id="idLink">
-    <input type="text" id="nome" placeholder="Nome do Link" required>
-    <input type="url" id="url" placeholder="Endereço (https://...)" required>
-    <textarea id="descricao" placeholder="Descrição (opcional)"></textarea>
-    <button type="submit">Salvar Link</button>
-  </form>
+<div class="container">
+  <header>
+    <h1>📚 Repositório de Links</h1>
+    <p>Organize e acesse seus links importantes em um só lugar</p>
+    <div class="stats">
+      <div class="stat">📊 <span id="totalLinks">0</span> links salvos</div>
+      <div class="stat">🔍 <span id="filteredLinks">0</span> exibidos</div>
+    </div>
+  </header>
 
-  <input type="text" id="busca" placeholder="🔍 Buscar link pelo nome...">
+  <main>
+    <div class="form-section">
+      <div class="form-header">
+        <h2 id="formTitle">➕ Adicionar Novo Link</h2>
+        <button class="cancel-btn" id="cancelBtn" onclick="cancelarEdicao()">Cancelar</button>
+      </div>
+      <form id="formLinks">
+        <input type="hidden" id="idLink">
+        
+        <div class="input-group">
+          <label for="nome">Nome do Link *</label>
+          <input type="text" id="nome" placeholder="Ex: Gmail, GitHub, Netflix..." required>
+        </div>
 
-  <div id="listaLinks"></div>
-</main>
+        <div class="input-group">
+          <label for="url">Endereço URL *</label>
+          <input type="url" id="url" placeholder="https://exemplo.com" required>
+        </div>
+
+        <div class="input-group">
+          <label for="descricao">Descrição</label>
+          <textarea id="descricao" placeholder="Adicione uma descrição ou nota sobre este link..."></textarea>
+        </div>
+
+        <button type="submit" id="submitBtn">💾 Salvar Link</button>
+      </form>
+    </div>
+
+    <div class="search-section">
+      <input type="text" id="busca" placeholder="🔍 Buscar links...">
+    </div>
+
+    <div id="listaLinks"></div>
+  </main>
+</div>
+
+<div class="toast" id="toast">
+  <span id="toastMessage"></span>
+</div>
 
 <script>
   const scriptURL = "https://script.google.com/macros/s/AKfycbw7coFs8OsAluwkePBngDvvlF7h7RS7EXtoo9LcUKciScWshCwaEa-htbELXiYJH9LB/exec";
@@ -107,36 +436,99 @@
   const lista = document.getElementById('listaLinks');
   const busca = document.getElementById('busca');
   const idInput = document.getElementById('idLink');
+  const formTitle = document.getElementById('formTitle');
+  const submitBtn = document.getElementById('submitBtn');
+  const cancelBtn = document.getElementById('cancelBtn');
+
+  let todosLinks = [];
+
+  function showToast(message, type = 'success') {
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+    
+    toast.className = `toast ${type}`;
+    toastMessage.textContent = message;
+    toast.style.display = 'flex';
+    
+    setTimeout(() => {
+      toast.style.display = 'none';
+    }, 3000);
+  }
 
   async function carregarLinks(filtro = "") {
-    lista.innerHTML = "<p>Carregando links...</p>";
-    const res = await fetch(scriptURL + "?action=listar");
-    const dados = await res.json();
+    lista.innerHTML = '<p style="text-align:center;color:#999;">⏳ Carregando links...</p>';
+    
+    try {
+      const res = await fetch(scriptURL + "?action=listar");
+      const dados = await res.json();
+      todosLinks = dados;
 
-    const filtrados = dados.filter(link => 
-      link.nome.toLowerCase().includes(filtro.toLowerCase())
-    );
+      const filtrados = dados.filter(link => 
+        link.nome.toLowerCase().includes(filtro.toLowerCase()) ||
+        (link.descricao && link.descricao.toLowerCase().includes(filtro.toLowerCase())) ||
+        link.url.toLowerCase().includes(filtro.toLowerCase())
+      );
 
-    if (filtrados.length === 0) {
-      lista.innerHTML = "<p>Nenhum link encontrado.</p>";
-      return;
+      document.getElementById('totalLinks').textContent = dados.length;
+      document.getElementById('filteredLinks').textContent = filtrados.length;
+
+      if (filtrados.length === 0) {
+        lista.innerHTML = `
+          <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <h3>Nenhum link encontrado</h3>
+            <p>${filtro ? 'Tente buscar com outros termos' : 'Adicione seu primeiro link acima!'}</p>
+          </div>
+        `;
+        return;
+      }
+
+      lista.innerHTML = filtrados.map((l, i) => {
+        const originalIndex = dados.indexOf(l);
+        return `
+          <div class="linkCard">
+            <h3>${escapeHtml(l.nome)}</h3>
+            <div class="url">${escapeHtml(l.url)}</div>
+            ${l.descricao ? `<p>${escapeHtml(l.descricao)}</p>` : ''}
+            <div class="acoes">
+              <button class="abrir" onclick="abrirLink('${l.url}')">🌐 Abrir</button>
+              <button class="copiar" onclick="copiarLink('${l.url}')">📋 Copiar</button>
+              <button class="editar" onclick='editarLink(${originalIndex}, ${JSON.stringify(escapeHtml(l.nome))}, ${JSON.stringify(escapeHtml(l.url))}, ${JSON.stringify(escapeHtml(l.descricao || ""))})'>✏️ Editar</button>
+              <button class="excluir" onclick="excluirLink(${originalIndex})">🗑️ Excluir</button>
+            </div>
+          </div>
+        `;
+      }).join("");
+    } catch (error) {
+      lista.innerHTML = '<p style="text-align:center;color:#ef4444;">❌ Erro ao carregar links. Tente novamente.</p>';
+      showToast('Erro ao carregar links', 'error');
     }
+  }
 
-    lista.innerHTML = filtrados.map((l, i) => `
-      <div class="linkCard">
-        <h3>${l.nome}</h3>
-        <p>${l.descricao || ""}</p>
-        <div class="acoes">
-          <button class="abrir" onclick="window.open('${l.url}', '_blank')">Abrir</button>
-          <button class="editar" onclick="editarLink(${i}, '${l.nome}', '${l.url}', \`${l.descricao || ""}\`)">Editar</button>
-          <button class="excluir" onclick="excluirLink(${i})">Excluir</button>
-        </div>
-      </div>
-    `).join("");
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  function abrirLink(url) {
+    window.open(url, '_blank');
+  }
+
+  function copiarLink(url) {
+    navigator.clipboard.writeText(url).then(() => {
+      showToast('✅ Link copiado!', 'success');
+    }).catch(() => {
+      showToast('❌ Erro ao copiar link', 'error');
+    });
   }
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    
     const dados = {
       action: idInput.value ? "editar" : "salvar",
       id: idInput.value,
@@ -145,36 +537,65 @@
       descricao: document.getElementById('descricao').value.trim(),
     };
 
-    const res = await fetch(scriptURL, {
-      method: "POST",
-      body: new URLSearchParams(dados),
-    });
+    submitBtn.disabled = true;
+    submitBtn.textContent = '⏳ Salvando...';
 
-    if (res.ok) {
-      alert("✅ Link salvo com sucesso!");
-      form.reset();
-      idInput.value = "";
-      carregarLinks();
-    } else {
-      alert("❌ Erro ao salvar link.");
+    try {
+      const res = await fetch(scriptURL, {
+        method: "POST",
+        body: new URLSearchParams(dados),
+      });
+
+      if (res.ok) {
+        showToast(idInput.value ? '✅ Link atualizado!' : '✅ Link adicionado!', 'success');
+        form.reset();
+        cancelarEdicao();
+        await carregarLinks();
+      } else {
+        showToast('❌ Erro ao salvar link', 'error');
+      }
+    } catch (error) {
+      showToast('❌ Erro de conexão', 'error');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = '💾 Salvar Link';
     }
   });
 
   function editarLink(id, nome, url, descricao) {
-    idInput.value = id + 1; // +1 pois a planilha começa em 1
+    idInput.value = id + 1;
     document.getElementById('nome').value = nome;
     document.getElementById('url').value = url;
     document.getElementById('descricao').value = descricao;
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    
+    formTitle.textContent = '✏️ Editar Link';
+    submitBtn.textContent = '💾 Atualizar Link';
+    cancelBtn.style.display = 'block';
+    
+    document.querySelector('.form-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function cancelarEdicao() {
+    form.reset();
+    idInput.value = '';
+    formTitle.textContent = '➕ Adicionar Novo Link';
+    submitBtn.textContent = '💾 Salvar Link';
+    cancelBtn.style.display = 'none';
   }
 
   async function excluirLink(id) {
-    if (!confirm("Deseja realmente excluir este link?")) return;
-    await fetch(scriptURL, {
-      method: "POST",
-      body: new URLSearchParams({ action: "excluir", id: id + 1 }),
-    });
-    carregarLinks();
+    if (!confirm("🗑️ Deseja realmente excluir este link?")) return;
+    
+    try {
+      await fetch(scriptURL, {
+        method: "POST",
+        body: new URLSearchParams({ action: "excluir", id: id + 1 }),
+      });
+      showToast('✅ Link excluído!', 'success');
+      await carregarLinks();
+    } catch (error) {
+      showToast('❌ Erro ao excluir link', 'error');
+    }
   }
 
   busca.addEventListener("input", () => carregarLinks(busca.value));
